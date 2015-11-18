@@ -35,9 +35,9 @@ public class CustomerListController extends AbstractServletHandler {
 			page = Integer.parseInt(req.getParameter("page"));
 		}
 
-		req.setAttribute("customers", getCustomerDao().findAll((page - 1) * recordsPerPage, recordsPerPage));
+		req.setAttribute("customers", getCommonService().findAll((page - 1) * recordsPerPage, recordsPerPage));
 
-		int numberOfRecords = getCustomerDao().numberOfRecords();
+		int numberOfRecords = getCommonService().numberOfRecords();
 		int numberOfPages = (int) Math.ceil(numberOfRecords * 1.0 / recordsPerPage);
 
 		req.setAttribute("numberOfPages", numberOfPages);

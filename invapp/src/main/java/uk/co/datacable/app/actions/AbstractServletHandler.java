@@ -8,26 +8,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import uk.co.datacable.app.dao.CustomerDao;
-import uk.co.datacable.app.dao.UserDao;
 import uk.co.datacable.app.dao.impl.CustomerDaoImpl;
 import uk.co.datacable.app.dao.impl.UserDaoImpl;
-import uk.co.datacable.app.services.LoginService;
+import uk.co.datacable.app.services.AdminService;
+import uk.co.datacable.app.services.CommonService;
+import uk.co.datacable.app.services.impl.AdminServiceImpl;
+import uk.co.datacable.app.services.impl.CommonServiceImpl;
+import uk.co.datacable.app.services.impl.LoginServiceImpl;
 import uk.co.datacable.app.utils.WebappConstants;
 
 public abstract class AbstractServletHandler extends HttpServlet implements WebappConstants, Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private UserDao userDao;
-	private CustomerDao customerDao;
 
-	private LoginService loginService;
+	private AdminService adminService;
+
+	private CommonService commonService;
+
+	private LoginServiceImpl loginService;
 
 	public AbstractServletHandler() {
 
-		this.setUserDao(new UserDaoImpl());
-		this.setLoginService(new LoginService(getUserDao()));
-		this.setCustomerDao(new CustomerDaoImpl());
+		this.setAdminService(new AdminServiceImpl(new UserDaoImpl(), new CustomerDaoImpl()));
+		this.setLoginService(new LoginServiceImpl(new UserDaoImpl()));
+		this.setCommonService(new CommonServiceImpl(new CustomerDaoImpl()));
 
 	}
 
@@ -40,28 +44,28 @@ public abstract class AbstractServletHandler extends HttpServlet implements Weba
 		response.sendRedirect(request.getContextPath() + path);
 	}
 
-	public UserDao getUserDao() {
-		return userDao;
+	public AdminService getAdminService() {
+		return adminService;
 	}
 
-	public void setUserDao(UserDao userDao) {
-		this.userDao = userDao;
+	public void setAdminService(AdminService adminService) {
+		this.adminService = adminService;
 	}
 
-	public LoginService getLoginService() {
+	public CommonService getCommonService() {
+		return commonService;
+	}
+
+	public void setCommonService(CommonService commonService) {
+		this.commonService = commonService;
+	}
+
+	public LoginServiceImpl getLoginService() {
 		return loginService;
 	}
 
-	public void setLoginService(LoginService loginService) {
+	public void setLoginService(LoginServiceImpl loginService) {
 		this.loginService = loginService;
-	}
-
-	public CustomerDao getCustomerDao() {
-		return customerDao;
-	}
-
-	public void setCustomerDao(CustomerDao customerDao) {
-		this.customerDao = customerDao;
 	}
 
 }

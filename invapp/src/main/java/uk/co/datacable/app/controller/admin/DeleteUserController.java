@@ -19,11 +19,11 @@ public class DeleteUserController extends AbstractServletHandler {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		User user = new User();
 
-		user = getUserDao().findById(Integer.parseInt(req.getParameter("idUser")));
+		user = getAdminService().findById(Integer.parseInt(req.getParameter("idUser")));
 
 		if (user != null) {
 
-			getUserDao().delete(user);
+			getAdminService().delete(user);
 		}
 		redirectRequest("/admin/adminpanel", req, resp);
 

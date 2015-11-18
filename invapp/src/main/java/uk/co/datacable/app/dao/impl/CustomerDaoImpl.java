@@ -184,4 +184,137 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	}
 
+	@Override
+	public List<Customer> searchByCustomerName(String name) {
+
+		Connection connection = null;
+		List<Customer> customerList = new ArrayList<Customer>();
+		try {
+			connection = DBUtill.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement("select accNumber, name, address1, address2, address3, address4, postcode from customer where name like ?");
+			preparedStatement.setString(1, "%" + name + "%");
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Customer customer = new Customer();
+
+				customer.setAccNumber(rs.getString("accNumber"));
+				customer.setName(rs.getString("name"));
+				customer.setAddress1(rs.getString("address1"));
+				customer.setAddress2(rs.getString("address2"));
+				customer.setAddress3(rs.getString("address3"));
+				customer.setAddress4(rs.getString("address4"));
+				customer.setPostcode(rs.getString("postcode"));
+				customerList.add(customer);
+
+			}
+		} catch (SQLException e) {
+			Logger.getLogger(CustomerDaoImpl.class.getName()).log(Level.SEVERE, null, e);
+		} finally {
+			DBUtill.closeConnection(connection);
+		}
+
+		return customerList;
+	}
+
+	@Override
+	public List<Customer> searchByCustomerAccountNumber(String number) {
+
+		Connection connection = null;
+		List<Customer> customerList = new ArrayList<Customer>();
+		try {
+			connection = DBUtill.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement("select accNumber, name, address1, address2, address3, address4, postcode from customer where accNumber like ?");
+			preparedStatement.setString(1, "%" + number + "%");
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Customer customer = new Customer();
+
+				customer.setAccNumber(rs.getString("accNumber"));
+				customer.setName(rs.getString("name"));
+				customer.setAddress1(rs.getString("address1"));
+				customer.setAddress2(rs.getString("address2"));
+				customer.setAddress3(rs.getString("address3"));
+				customer.setAddress4(rs.getString("address4"));
+				customer.setPostcode(rs.getString("postcode"));
+				customerList.add(customer);
+
+			}
+		} catch (SQLException e) {
+			Logger.getLogger(CustomerDaoImpl.class.getName()).log(Level.SEVERE, null, e);
+		} finally {
+			DBUtill.closeConnection(connection);
+		}
+
+		return customerList;
+	}
+
+	@Override
+	public List<Customer> searchByCustomerName(String name, int offset, int limit) {
+
+		Connection connection = null;
+		List<Customer> customerList = new ArrayList<Customer>();
+		try {
+			connection = DBUtill.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement("select accNumber, name, address1, address2, address3, address4, postcode from customer where name like ? order by accNumber limit " + offset + ", " + limit);
+			preparedStatement.setString(1, "%" + name + "%");
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Customer customer = new Customer();
+
+				customer.setAccNumber(rs.getString("accNumber"));
+				customer.setName(rs.getString("name"));
+				customer.setAddress1(rs.getString("address1"));
+				customer.setAddress2(rs.getString("address2"));
+				customer.setAddress3(rs.getString("address3"));
+				customer.setAddress4(rs.getString("address4"));
+				customer.setPostcode(rs.getString("postcode"));
+				customerList.add(customer);
+
+			}
+		} catch (SQLException e) {
+			Logger.getLogger(CustomerDaoImpl.class.getName()).log(Level.SEVERE, null, e);
+		} finally {
+			DBUtill.closeConnection(connection);
+		}
+
+		return customerList;
+
+	}
+
+	@Override
+	public List<Customer> searchByCustomerAccountNumber(String number, int offset, int limit) {
+		Connection connection = null;
+		List<Customer> customerList = new ArrayList<Customer>();
+		try {
+			connection = DBUtill.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement("select accNumber, name, address1, address2, address3, address4, postcode from customer where accNumber like ? order by accNumber limit " + offset + ", " + limit);
+			preparedStatement.setString(1, "%" + number + "%");
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Customer customer = new Customer();
+
+				customer.setAccNumber(rs.getString("accNumber"));
+				customer.setName(rs.getString("name"));
+				customer.setAddress1(rs.getString("address1"));
+				customer.setAddress2(rs.getString("address2"));
+				customer.setAddress3(rs.getString("address3"));
+				customer.setAddress4(rs.getString("address4"));
+				customer.setPostcode(rs.getString("postcode"));
+				customerList.add(customer);
+
+			}
+		} catch (SQLException e) {
+			Logger.getLogger(CustomerDaoImpl.class.getName()).log(Level.SEVERE, null, e);
+		} finally {
+			DBUtill.closeConnection(connection);
+		}
+
+		return customerList;
+
+	}
+
 }

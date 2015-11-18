@@ -17,7 +17,7 @@ public class DeleteAllCustomers extends AbstractServletHandler {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		getCustomerDao().deleteAll();
+		getAdminService().deleteAll();
 
 		req.getSession().setAttribute("uploadFileStatus", false);
 

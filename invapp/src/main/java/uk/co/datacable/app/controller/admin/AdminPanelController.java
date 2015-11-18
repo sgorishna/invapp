@@ -21,7 +21,7 @@ public class AdminPanelController extends AbstractServletHandler {
 		HttpSession session = req.getSession();
 		session.getAttribute("uploadFileStatus");
 
-		req.setAttribute("users", getUserDao().findAll());
+		req.setAttribute("users", getAdminService().findAll());
 
 		gotoToJSP("admin/adminpanel.jsp", req, resp);
 	}

@@ -31,7 +31,7 @@ public class NewUserController extends AbstractServletHandler {
 		user.setIdRole((Integer.parseInt(req.getParameter("role"))));
 		user.setActive((Byte.parseByte(req.getParameter("active"))));
 
-		getUserDao().create(user);
+		getAdminService().create(user);
 
 		redirectRequest("/admin/adminpanel", req, resp);
 	}

@@ -18,4 +18,11 @@ public interface CustomerDao {
 
 	Customer findByAccountNumber(String accountNumber);
 
+	List<Customer> searchByCustomerName(String name);
+
+	List<Customer> searchByCustomerAccountNumber(String number);
+
+	List<Customer> searchByCustomerName(String name, int offset, int limit);
+
+	List<Customer> searchByCustomerAccountNumber(String number, int offset, int limit);
 }

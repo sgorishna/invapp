@@ -18,7 +18,7 @@ public class UpdateUserController extends AbstractServletHandler {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Integer idUser = Integer.parseInt(req.getParameter("idUser"));
-		User user = getUserDao().findById(idUser);
+		User user = getAdminService().findById(idUser);
 		req.setAttribute("user", user);
 
 		gotoToJSP("admin/updateUser.jsp", req, resp);
@@ -36,7 +36,7 @@ public class UpdateUserController extends AbstractServletHandler {
 
 		user.setIdUser(Integer.parseInt(req.getParameter("idUser")));
 
-		getUserDao().update(user);
+		getAdminService().update(user);
 
 		redirectRequest("/admin/adminpanel", req, resp);
 

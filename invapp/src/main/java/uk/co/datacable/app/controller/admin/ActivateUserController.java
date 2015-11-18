@@ -19,11 +19,11 @@ public class ActivateUserController extends AbstractServletHandler {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		User user = new User();
 
-		user = getUserDao().findById(Integer.parseInt(req.getParameter("idUser")));
+		user = getAdminService().findById(Integer.parseInt(req.getParameter("idUser")));
 
 		if (user != null) {
 
-			getUserDao().activate(user);
+			getAdminService().activate(user);
 		}
 		redirectRequest("/admin/adminpanel", req, resp);
 	}
