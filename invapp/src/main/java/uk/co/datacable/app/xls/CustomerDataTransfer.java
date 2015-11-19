@@ -22,7 +22,8 @@ public class CustomerDataTransfer {
 		try {
 
 			connection = DBUtill.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement("insert ignore into customer(accNumber, name, address1, address2, address3, address4, postcode) values (?, ?, ?, ?, ?, ?, ?)");
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("insert into customer(accNumber, name, address1, address2, address3, address4, postcode) values (?, ?, ?, ?, ?, ?, ?) on duplicate key update  name=values(name), address1=values(address1), address2=values(address2) ,address3=values(address3) ,address4=values(address4), postcode=values(postcode)");
 
 			// reader = new CSVReader(new FileReader(path), ',', '"', -1);
 			reader = new CSVReader(new FileReader(path), ',');
@@ -39,6 +40,7 @@ public class CustomerDataTransfer {
 					preparedStatement.setString(5, nextLine[4]);
 					preparedStatement.setString(6, nextLine[5]);
 					preparedStatement.setString(7, nextLine[6]);
+
 					preparedStatement.executeUpdate();
 
 				}
