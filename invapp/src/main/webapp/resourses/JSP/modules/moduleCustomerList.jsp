@@ -31,7 +31,7 @@
 	<tbody>
 		<c:forEach items="${requestScope.customers}" var="customer">
 			<tr>
-				<td><c:out value="${customer.accNumber}" /></td>
+				<td> <a href="customerDetails?accNum=${customer.accNumber}"> <c:out value="${customer.accNumber}" /></a></td>
 				<td><c:out value="${customer.name}" /></td>
 
 				<td><c:out value="${customer.address3}" /></td>

@@ -225,7 +225,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		try {
 			connection = DBUtill.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement("select accNumber, name, address1, address2, address3, address4, postcode from customer where accNumber like ?");
-			preparedStatement.setString(1, "%" + number + "%");
+			preparedStatement.setString(1,  "%" + number + "%" );
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
@@ -315,6 +315,63 @@ public class CustomerDaoImpl implements CustomerDao {
 
 		return customerList;
 
+	}
+
+	@Override
+	public List<Customer> autocompleteSearchByCustomerAccountNumber(
+			String number) {
+		Connection connection = null;
+		List<Customer> customerList = new ArrayList<Customer>();
+		try {
+			connection = DBUtill.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement("select accNumber, name  from customer where accNumber like ?");
+			preparedStatement.setString(1,  number+ "%" );
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Customer customer = new Customer();
+
+				customer.setAccNumber(rs.getString("accNumber"));
+				customer.setName(rs.getString("name"));
+				
+				customerList.add(customer);
+
+			}
+		} catch (SQLException e) {
+			Logger.getLogger(CustomerDaoImpl.class.getName()).log(Level.SEVERE, null, e);
+		} finally {
+			DBUtill.closeConnection(connection);
+		}
+
+		return customerList;
+	}
+
+	@Override
+	public List<Customer> autocompleteSearchByName(String name) {
+		Connection connection = null;
+		List<Customer> customerList = new ArrayList<Customer>();
+		try {
+			connection = DBUtill.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement("select  name  from customer where accNumber like ?");
+			preparedStatement.setString(1,  name+ "%" );
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Customer customer = new Customer();
+
+				
+				customer.setName(rs.getString("name"));
+				
+				customerList.add(customer);
+
+			}
+		} catch (SQLException e) {
+			Logger.getLogger(CustomerDaoImpl.class.getName()).log(Level.SEVERE, null, e);
+		} finally {
+			DBUtill.closeConnection(connection);
+		}
+
+		return customerList;
 	}
 
 }

@@ -15,5 +15,9 @@ public interface CommonService {
 	List<Customer> searchByCustomerName(String name);
 
 	List<Customer> searchByCustomerAccountNumber(String number);
+	
+	List<Customer> autocompleteSearchByCustomerAccountNumber(String number);
+	
+	List<Customer> autocompleteSearchByName(String name);
 
 }

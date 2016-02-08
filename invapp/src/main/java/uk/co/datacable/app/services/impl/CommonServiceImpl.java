@@ -48,4 +48,17 @@ public class CommonServiceImpl implements CommonService {
 		return getCustomerDao().searchByCustomerAccountNumber(number);
 	}
 
+	@Override
+	public List<Customer> autocompleteSearchByCustomerAccountNumber(
+			String number) {
+		
+		return customerDao.autocompleteSearchByCustomerAccountNumber(number);
+	}
+
+	@Override
+	public List<Customer> autocompleteSearchByName(String name) {
+		
+		return customerDao.autocompleteSearchByName(name);
+	}
+
 }

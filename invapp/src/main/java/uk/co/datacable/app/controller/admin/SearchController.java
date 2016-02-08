@@ -30,7 +30,9 @@ public class SearchController extends AbstractServletHandler {
 
 		if (accNumber != null && accNumber != "") {
 
-			List<Customer> searchByCustomerAccountNumber = getCommonService().searchByCustomerAccountNumber(accNumber);
+			String n = accNumber.split(" ")[0];
+			
+			List<Customer> searchByCustomerAccountNumber = getCommonService().searchByCustomerAccountNumber(n);
 
 			req.setAttribute("RESULT", searchByCustomerAccountNumber);
 

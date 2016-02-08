@@ -25,4 +25,8 @@ public interface CustomerDao {
 	List<Customer> searchByCustomerName(String name, int offset, int limit);
 
 	List<Customer> searchByCustomerAccountNumber(String number, int offset, int limit);
+	
+	List<Customer> autocompleteSearchByCustomerAccountNumber(String number);
+	
+	List<Customer> autocompleteSearchByName(String name);
 }

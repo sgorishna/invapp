@@ -8,6 +8,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Show all customers</title>
+
+
+
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script type="text/javascript" >
+
+      <%@include file="/resourses/js/jqueryAutocomplete.js" %>
+ 
+</script>   
+
+<style>
+
+<%@include file="/resourses/css/scrollingForAutocomplete.css" %>
+
+</style>
+
+
 </head>
 
 <p align="right"><a href="adminpanel" >Admin panel</a></p>
@@ -56,9 +76,13 @@ function myFunction() {
 	</c:otherwise>
 </c:choose>
 
+<script>
 
-	<script type="text/javascript">
-		
-	</script>
+
+
+</script>
+
+
+	
 </body>
 </html>
