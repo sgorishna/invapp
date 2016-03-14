@@ -9,7 +9,7 @@
 <title>Home</title>
 </head>
 <body>
-  <jsp:include page="../modules/search.jsp"></jsp:include>
+  <jsp:include page="../modules/moduleSupplierSearch.jsp"></jsp:include>
   
   <p><a href="logout">Logout</a></p>
   

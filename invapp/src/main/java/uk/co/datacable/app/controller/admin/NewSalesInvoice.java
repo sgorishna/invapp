@@ -13,13 +13,15 @@ import javax.servlet.http.Part;
 
 import uk.co.datacable.app.actions.AbstractServletHandler;
 import uk.co.datacable.app.xls.CustomerDataTransfer;
+import uk.co.datacable.app.xls.LoadFileHelper;
+import uk.co.datacable.app.xls.SalesInvoiceDataTransfer;
 
-@WebServlet("/admin/newCustomerInvoice")
+@WebServlet("/admin/newSalesInvoice")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 10, // 10 MB
 maxFileSize = 1024 * 1024 * 100, // 50 MB
 maxRequestSize = 1024 * 1024 * 100)
 // 100 MB
-public class NewCustomerInvoice extends AbstractServletHandler {
+public class NewSalesInvoice extends AbstractServletHandler {
 
 	private static final long serialVersionUID = 1L;
 
@@ -28,7 +30,7 @@ public class NewCustomerInvoice extends AbstractServletHandler {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		gotoToJSP("admin/newCustomerInvoice.jsp", req, resp);
+		gotoToJSP("admin/newSalesInvoice.jsp", req, resp);
 	}
 
 	@Override
@@ -48,25 +50,25 @@ public class NewCustomerInvoice extends AbstractServletHandler {
 		String fileName = null;
 
 		for (Part part : req.getParts()) {
-			String name = CustomerDataTransfer.getFileName(part);
-			if (name.endsWith(".csv")) {
-				fileName = "customerInv.csv";
+			String name = LoadFileHelper.getFileName(part);
+			if (name.endsWith(".csv") || name.endsWith(".CSV") ) {
+				fileName = "salesInv.csv";
 				part.write(uploadFilePath + File.separator + fileName);
 
-				CustomerDataTransfer.transfer(uploadFilePath + File.separator + fileName);
-				CustomerDataTransfer.deleteFile(uploadFilePath + File.separator + fileName);
+				SalesInvoiceDataTransfer.transfer(uploadFilePath + File.separator + fileName);
+				LoadFileHelper.deleteFile(uploadFilePath + File.separator + fileName);
 
 				uploadFileStatus = true;
 
 				HttpSession session = req.getSession();
 				session.setAttribute("uploadFileStatus", uploadFileStatus);
 
-				redirectRequest("/admin/customerlist", req, resp);
+				redirectRequest("/admin/salesInvoices", req, resp);
 			} else {
 
 				req.setAttribute("uploadFileStatus", uploadFileStatus);
 
-				gotoToJSP("admin/newCustomerInvoice.jsp", req, resp);
+				gotoToJSP("admin/newSalesInvoice.jsp", req, resp);
 
 			}
 		}

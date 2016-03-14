@@ -23,7 +23,8 @@ function myFunction() {
 </c:when>
 </c:choose>
  
- <form action="newCustomerInvoice" method="post" enctype="multipart/form-data">
+ <h4>Upload sales invoice </h4>
+ <form action="newSalesInvoice" method="post" enctype="multipart/form-data">
 Select File to Upload:<input type="file" name="fileName">
 <br>
 <input type="submit" value="Upload">

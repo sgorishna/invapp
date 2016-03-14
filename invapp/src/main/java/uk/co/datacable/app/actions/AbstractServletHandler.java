@@ -9,12 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import uk.co.datacable.app.dao.impl.CustomerDaoImpl;
+import uk.co.datacable.app.dao.impl.SupplierDaoImpl;
 import uk.co.datacable.app.dao.impl.UserDaoImpl;
 import uk.co.datacable.app.services.AdminService;
 import uk.co.datacable.app.services.CommonService;
+import uk.co.datacable.app.services.SupplierService;
 import uk.co.datacable.app.services.impl.AdminServiceImpl;
 import uk.co.datacable.app.services.impl.CommonServiceImpl;
 import uk.co.datacable.app.services.impl.LoginServiceImpl;
+import uk.co.datacable.app.services.impl.SupplierServiceImpl;
 import uk.co.datacable.app.utils.WebappConstants;
 
 public abstract class AbstractServletHandler extends HttpServlet implements WebappConstants, Serializable {
@@ -22,6 +25,8 @@ public abstract class AbstractServletHandler extends HttpServlet implements Weba
 	private static final long serialVersionUID = 1L;
 
 	private AdminService adminService;
+	
+	private SupplierService supplierService;
 
 	private CommonService commonService;
 
@@ -32,6 +37,7 @@ public abstract class AbstractServletHandler extends HttpServlet implements Weba
 		this.setAdminService(new AdminServiceImpl(new UserDaoImpl(), new CustomerDaoImpl()));
 		this.setLoginService(new LoginServiceImpl(new UserDaoImpl()));
 		this.setCommonService(new CommonServiceImpl(new CustomerDaoImpl()));
+		this.setSupplierService(new SupplierServiceImpl(new SupplierDaoImpl()));
 
 	}
 
@@ -66,6 +72,14 @@ public abstract class AbstractServletHandler extends HttpServlet implements Weba
 
 	public void setLoginService(LoginServiceImpl loginService) {
 		this.loginService = loginService;
+	}
+
+	public SupplierService getSupplierService() {
+		return supplierService;
+	}
+
+	public void setSupplierService(SupplierService supplierService) {
+		this.supplierService = supplierService;
 	}
 
 }

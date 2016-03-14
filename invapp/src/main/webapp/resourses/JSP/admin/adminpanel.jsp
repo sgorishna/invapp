@@ -78,9 +78,17 @@
         </tbody>
     </table>
     <p><a href="newuser">Register new user</a></p>
-    <p><a href="newCustomerInvoice">Upload customer invoice</a></p>
+    <p><a href="newCustomerList">Upload customer list</a></p>
+    
+     <p><a href="newSupplierList">Upload supplier list</a></p>
+     
+       <p><a href="newSalesInvoice">Upload sales invoice</a></p>
+       
+        <p><a href="newSalesInvoiceDetail">Upload sales invoice detail</a></p>
     
     <p><a href="customerlist">List of customers</a></p>
+    
+    <p><a href="supplierlist">List of suppliers</a></p>
     
      <p><a href="logout">Logout</a></p>
     

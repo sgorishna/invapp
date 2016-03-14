@@ -12,11 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import uk.co.datacable.app.actions.AbstractServletHandler;
 import uk.co.datacable.app.entities.Customer;
+import uk.co.datacable.app.entities.Supplier;
 
 import org.json.JSONArray;
 
-@WebServlet("/admin/searchByAccountNumber")
-public class AutocompleteSearchByAccountNumberController extends
+@WebServlet("/admin/searchBySupplierAccountNumber")
+public class AutocompleteSearchBySupplierAccountNumberController extends
 		AbstractServletHandler {
 
 	private static final long serialVersionUID = 1L;
@@ -31,18 +32,18 @@ public class AutocompleteSearchByAccountNumberController extends
 
 		String accountNumber = req.getParameter("term");
 
-		List<Customer> list = getCommonService()
-				.autocompleteSearchByCustomerAccountNumber(accountNumber);
+		List<Supplier> list = getSupplierService()
+				.autocompleteSearchBySupplierAccountNumber(accountNumber);
 
 		JSONArray json = new JSONArray();
 
-		Iterator<Customer> itr = list.iterator();
+		Iterator<Supplier> itr = list.iterator();
 		while (itr.hasNext()) {
 
-			Customer c = itr.next();
+			Supplier s = itr.next();
 
-			String accNum = c.getAccNumber();
-			String name = c.getName();
+			String accNum = s.getAccNumber();
+			String name = s.getName();
 
 			json.put(accNum + " - " + name);
 

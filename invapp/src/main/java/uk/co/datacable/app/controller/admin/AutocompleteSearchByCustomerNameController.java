@@ -15,8 +15,8 @@ import uk.co.datacable.app.entities.Customer;
 
 import org.json.JSONArray;
 
-@WebServlet("/admin/searchByName")
-public class AutocompleteSearchByNameController extends
+@WebServlet("/admin/searchByCustomerName")
+public class AutocompleteSearchByCustomerNameController extends
 		AbstractServletHandler {
 
 	private static final long serialVersionUID = 1L;

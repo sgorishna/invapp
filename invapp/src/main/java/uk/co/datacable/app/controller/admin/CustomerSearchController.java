@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import uk.co.datacable.app.actions.AbstractServletHandler;
 import uk.co.datacable.app.entities.Customer;
 
-@WebServlet("/admin/search")
-public class SearchController extends AbstractServletHandler {
+@WebServlet("/admin/customerSearch")
+public class CustomerSearchController extends AbstractServletHandler {
 
 	private static final long serialVersionUID = 1L;
 
@@ -45,7 +45,7 @@ public class SearchController extends AbstractServletHandler {
 
 		}
 
-		gotoToJSP("admin/search.jsp", req, resp);
+		gotoToJSP("admin/customerSearch.jsp", req, resp);
 
 	}
 

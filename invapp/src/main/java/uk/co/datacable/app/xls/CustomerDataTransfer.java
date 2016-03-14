@@ -110,30 +110,6 @@ public class CustomerDataTransfer {
 	 * }
 	 */
 
-	public static void deleteFile(String path) {
 
-		try {
-
-			File fileTemp = new File(path);
-			if (fileTemp.exists()) {
-				fileTemp.delete();
-			}
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-	}
-
-	public static String getFileName(Part part) {
-		String contentDisp = part.getHeader("content-disposition");
-		System.out.println("content-disposition header= " + contentDisp);
-		String[] tokens = contentDisp.split(";");
-		for (String token : tokens) {
-			if (token.trim().startsWith("filename")) {
-				return token.substring(token.indexOf("=") + 2, token.length() - 1);
-			}
-		}
-		return "";
-	}
 
 }

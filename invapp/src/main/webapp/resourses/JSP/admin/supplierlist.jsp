@@ -53,24 +53,24 @@ function myFunction() {
 </c:choose>
 
 <c:choose>
-<c:when test="${ empty requestScope.customers}">
+<c:when test="${ empty requestScope.suppliers}">
 
 <h3 align="center" style="color: red">There are no records to display </h3>
 
- <p align="center"><a href="newCustomerList">Upload customer invoice</a></p>
+ <p align="center"><a href="newSupplierList">Upload supplier invoice</a></p>
  
  
 </c:when>
 <c:otherwise>
- <jsp:include page="../modules/moduleCustomerSearchForm.jsp" />
+ <jsp:include page="../modules/moduleSupplierSearchForm.jsp" />
  
  <p>
 	
-	<a href="deleteAll" onclick="return confirm('Are you sure you want to clear all?');">
+	<a href="clearAllSupplierList" onclick="return confirm('Are you sure you want to clear all?');">
 							Clear all </a>
 	
  
- <jsp:include page="../modules/moduleCustomerList.jsp" />
+ <jsp:include page="../modules/moduleSupplierList.jsp" />
 
 
 	</c:otherwise>
